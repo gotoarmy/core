@@ -4,19 +4,17 @@ import hello.core.member.Grade;
 import hello.core.member.Member;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
-
-import java.util.Arrays;
+import hello.core.order.OrderServiceimpl;
 
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService MemberService =new MemberServiceImpl();
-        Member someGuy = new Member(1L, "김진수", Grade.Vip);
-        MemberService.join(someGuy);
-        Member findMember = MemberService.findMember(1L);
-
-        System.out.println("new member =" +someGuy.getName());
-        System.out.println("find member =" +findMember.getName());
-
+        Appconfig appconfig = new Appconfig();
+        MemberService memberService = appconfig.memberService(); //요런식으로 추가
+        Member member = new Member(1L, "memberA", Grade.Vip);
+        memberService.join(member);
+        Member findMember = memberService.findMember(1L);
+        System.out.println("new member = " + member.getName());
+        System.out.println("find Member = " + findMember.getName());
     }
 }
